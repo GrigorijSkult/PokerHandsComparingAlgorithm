@@ -47,7 +47,7 @@ The project uses Java 11.
 
 You can run the project using the command line or its analogue
 1. Install Java on your device if it isn't installed;
-2. Get .jar file from `PokerHandsComparingAlgorithm\src\main\resources`;
+2. Download .jar file from`https://github.com/GrigorijSkult/PokerHandsComparingAlgorithm/blob/master/src/main/resources/PokerHandsComparingAlgorithm.jar` or get it from`PokerHandsComparingAlgorithm\src\main\resources`;
 3. Run Command Prompt or its analogue;
 4. Input  `java -jar c:\path\to\jar\file\PokerHandsComparingAlgorithm.jar` and press Enter. Replace `c:\path\to\jar\file\` with the actual path. 
 If all is done correctly you will receive output `Program is started`;
