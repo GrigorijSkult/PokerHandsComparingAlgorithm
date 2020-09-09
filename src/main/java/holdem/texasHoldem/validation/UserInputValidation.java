@@ -7,7 +7,7 @@ import java.util.List;
 public class UserInputValidation {
     public void inputValidate(String userInput) {
         if (!userInput.contains(" ")) {
-            throw new IllegalArgumentException("Please use space ' ' for card group separation;");
+            throw new IllegalArgumentException("Incorrect format, Enter cards using space ' ' for card group separation;");
         }
         String[] parts = userInput.split(" ");
         int boardExist = 0;
@@ -16,7 +16,7 @@ public class UserInputValidation {
                 throw new IllegalArgumentException("Incorrect data input, check the format;");
             }
             if (part.length() != 10 && part.length() % 4 != 0.00) {
-                throw new IllegalArgumentException("Odd number of entered hands cards;");
+                throw new IllegalArgumentException("Incorrect number of entered hands cards;");
             }
             if (part.length() == 10) {
                 boardExist++;

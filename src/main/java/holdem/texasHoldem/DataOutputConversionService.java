@@ -101,7 +101,6 @@ public class DataOutputConversionService {
                             }
                         }
                     } else {
-                        System.out.println();
                         oneRangAndStrengthHands.put((byte) 1, new ArrayList<CalculationResultDto>(oneStrengthHand.getValue()));
                     }
                     if (!oneRangAndStrengthHands.isEmpty()) {
@@ -109,7 +108,6 @@ public class DataOutputConversionService {
                             Double handStrengths = value.get(0).getHandStrengths();
                             if (oneStrengthHand.getKey() == 3 || oneStrengthHand.getKey() == 7) {
                                 if (oneStrengthHand.getKey() == 7) {
-                                    System.out.println();
                                     if (value.get(0).getCombinationCards().get(0).getRank() > value.get(1).getCombinationCards().get(0).getRank()) {
                                         value.get(0).setHandStrengths(handStrengths += 0.01);
                                         break;

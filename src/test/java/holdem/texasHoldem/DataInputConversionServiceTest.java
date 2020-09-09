@@ -63,14 +63,14 @@ public class DataInputConversionServiceTest {
     public void smallHandException() {
         assertThatThrownBy(() -> victim.inputConversion("6h3d5c7s4s 6h3d 5c 7s"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Odd number of entered hands cards;");
+                .hasMessage("Incorrect number of entered hands cards;");
     }
 
     @Test
     public void bigHandException() {
         assertThatThrownBy(() -> victim.inputConversion("6h3d5c7s4s 6h3d4h 5c7s"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Odd number of entered hands cards;");
+                .hasMessage("Incorrect number of entered hands cards;");
     }
 
     @Test
@@ -98,7 +98,7 @@ public class DataInputConversionServiceTest {
     public void invalidSpaceException() {
         assertThatThrownBy(() -> victim.inputConversion("6h3d5c7s4s_6h3d"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Please use space ' ' for card group separation;");
+                .hasMessage("Incorrect format, Enter cards using space ' ' for card group separation;");
     }
 
     @Test
@@ -112,7 +112,7 @@ public class DataInputConversionServiceTest {
     public void incorrectTenRankException() {
         assertThatThrownBy(() -> victim.inputConversion("6h3d5c7s4s 10hQd"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Odd number of entered hands cards;");
+                .hasMessage("Incorrect number of entered hands cards;");
     }
 
     //    @Test

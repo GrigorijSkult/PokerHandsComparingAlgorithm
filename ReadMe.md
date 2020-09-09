@@ -37,7 +37,7 @@ The **output** is written to standard output using the format:
 - `hand n` is the hand  with the biggest strength;
 
 In case there are multiple hands with the same strength on the board they are separated by "=" signs. In other cases hands are separated by space character. 
-The incorrect data input will cause an validation error output, with problem description. 
+The incorrect data input will cause a validation error output, with problem description. 
 
 
 ## Execution of the project
@@ -50,13 +50,12 @@ You can run the project using the command line or its analogue
 2. Download .jar file from https://github.com/GrigorijSkult/PokerHandsComparingAlgorithm/blob/master/src/main/resources/PokerHandsComparingAlgorithm.jar or get it from`PokerHandsComparingAlgorithm\src\main\resources`;
 3. Run Command Prompt or its analogue;
 4. Input  `java -jar c:\path\to\jar\file\PokerHandsComparingAlgorithm.jar` and press Enter. Replace `c:\path\to\jar\file\` with the actual path. 
-If all is done correctly you will receive output `Program is started`;
-5. Perform data input described in "General information on the use";
-6. Next output is hand list sorted by strength.
+5. Perform data input described in "General information on the use" and press Enter;
+6. Next output line is hand list sorted by strength. 
 
 Now you can repeat step №4 to calculate a new data.
+In the case of the multiple lines input, one line of input corresponds to exactly one line of sequential output.
 
-To stop the program, input `--exit`
 
 -----
 
@@ -67,10 +66,11 @@ You can run the project using IntelliJ IDEA:
 https://github.com/GrigorijSkult/PokerHandsComparingAlgorithm.git
 3. Build the project;
 4. Run  method `main` from `holdem\src\main\java\com\cardsstrength\holdem\HoldemApplication.java`;
-5. Perform data input described in "General information on the use";
+5. Perform data input described in "General information on the use" and press Enter;
 6. Next output is hand list sorted by strength.
 
 Now you can repeat step №4 to calculate a new data.
+In the case of the multiple lines input, one line of input corresponds to exactly one line of sequential output.
  
 
 

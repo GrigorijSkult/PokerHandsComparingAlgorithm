@@ -20,8 +20,13 @@ public class HandRankCalculationService {
     public ArrayList<CalculationResultDto> calculation(HandsAndBoardDto inputData) {
         ArrayList<CalculationResultDto> handsCalculationResults = new ArrayList<>();
         for (Hand hand : inputData.getHands()) {
-            RankCalculationDto pairResult = pairRangCalculationService.calculation(hand, inputData.getBoard());
             RankCalculationDto straightAndSuitedResult = straightAndSuitedRangCalculationService.calculation(hand, inputData.getBoard());
+            RankCalculationDto pairResult = new RankCalculationDto();
+            if (straightAndSuitedResult.getStrength() == 9.00 || straightAndSuitedResult.getStrength() == 10.00) {
+                pairResult.setStrength(1.00);
+            } else {
+                pairResult = pairRangCalculationService.calculation(hand, inputData.getBoard());
+            }
 
             CalculationResultDto newResult;
             if (pairResult.getStrength() >= straightAndSuitedResult.getStrength()) {

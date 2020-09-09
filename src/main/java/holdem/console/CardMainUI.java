@@ -22,22 +22,17 @@ public class CardMainUI {
     }
 
     public void runMainUI() {
-        boolean continueProgram = true;
-        System.out.println("Program is started");
-        do {
-            Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+        String userInput = sc.nextLine();
+        while (userInput != null) {
             try {
-                String userInput = sc.nextLine();
-                if (userInput.equals("--exit")) {
-                    continueProgram = false;
-                } else {
-                    String result = mainSortingService.mainSorting(userInput);
-                    System.out.println(result);
-                }
+                String result = mainSortingService.mainSorting(userInput);
+                System.out.println(result);
             } catch (IllegalArgumentException e) {
                 System.out.println("Calculation cant be performed: " + e.getMessage());
             }
-        } while (continueProgram);
-        System.out.println("Program is finished;");
+            userInput = sc.nextLine();
+        }
+        sc.close();
     }
 }
