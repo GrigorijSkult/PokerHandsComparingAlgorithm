@@ -15,7 +15,7 @@ public class UserInputValidation {
             if (part.length() == 0) {
                 throw new IllegalArgumentException("Incorrect data input, check the format;");
             }
-            if (part.length() != 10 && part.length() % 4 != 0.00) {
+            if (part.length() != 10 && part.length() != 4) {
                 throw new IllegalArgumentException("Incorrect number of entered hands cards;");
             }
             if (part.length() == 10) {

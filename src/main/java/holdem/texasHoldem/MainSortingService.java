@@ -9,14 +9,16 @@ import java.util.ArrayList;
 public class MainSortingService {
     private final DataInputConversionService dataInputConversionService;
     private final HandRankCalculationService handRankCalculationService;
-    private final DataOutputConversionService dataOutputConversionService;
+    private final DataOutputSortingService dataOutputSortingService;
+    private final OutputStringBuildingService outputStringBuildingService;
 
     public MainSortingService(DataInputConversionService dataInputConversionService,
                               HandRankCalculationService handRankCalculationService,
-                              DataOutputConversionService dataOutputConversionService) {
+                              DataOutputSortingService dataOutputSortingService, OutputStringBuildingService outputStringBuildingService) {
         this.dataInputConversionService = dataInputConversionService;
         this.handRankCalculationService = handRankCalculationService;
-        this.dataOutputConversionService = dataOutputConversionService;
+        this.dataOutputSortingService = dataOutputSortingService;
+        this.outputStringBuildingService = outputStringBuildingService;
     }
 
     public String mainSorting(String userInputData) {
@@ -24,6 +26,8 @@ public class MainSortingService {
 
         ArrayList<CalculationResultDto> handsCalculationResults = handRankCalculationService.calculation(handsAndBoardDto);
 
-        return dataOutputConversionService.execute(handsCalculationResults);
+        handsCalculationResults = dataOutputSortingService.execute(handsCalculationResults);
+
+        return outputStringBuildingService.execute(handsCalculationResults);
     }
 }

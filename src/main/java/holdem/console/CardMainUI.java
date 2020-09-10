@@ -2,8 +2,9 @@ package holdem.console;
 
 import holdem.core.mappers.CardRankMapper;
 import holdem.texasHoldem.DataInputConversionService;
-import holdem.texasHoldem.DataOutputConversionService;
+import holdem.texasHoldem.DataOutputSortingService;
 import holdem.texasHoldem.MainSortingService;
+import holdem.texasHoldem.OutputStringBuildingService;
 import holdem.texasHoldem.strengthCalculationServices.HandRankCalculationService;
 import holdem.texasHoldem.strengthCalculationServices.PairRangCalculationService;
 import holdem.texasHoldem.strengthCalculationServices.StraightAndSuitedRangCalculationService;
@@ -18,7 +19,8 @@ public class CardMainUI {
         this.mainSortingService = new MainSortingService(
                 new DataInputConversionService(new UserInputValidation(), new CardRankMapper()),
                 new HandRankCalculationService(new PairRangCalculationService(), new StraightAndSuitedRangCalculationService()),
-                new DataOutputConversionService(new CardRankMapper()));
+                new DataOutputSortingService(),
+                new OutputStringBuildingService(new CardRankMapper()));
     }
 
     public void runMainUI() {

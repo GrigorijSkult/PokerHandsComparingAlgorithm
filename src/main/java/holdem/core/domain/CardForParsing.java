@@ -1,9 +1,10 @@
 package holdem.core.domain;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
-public class CardForParsing {
+public class CardForParsing implements Serializable {
     private final byte rank;
     private final String suit;
     private boolean kicker = false;
@@ -59,13 +60,17 @@ public class CardForParsing {
         return Objects.hash(rank, suit, kicker);
     }
 
+//    @Override
+//    public String toString() {
+//        return "CardForParsing{" +
+//                "rank=" + rank +
+//                ", suit='" + suit + '\'' +
+//                ", kicker=" + kicker +
+//                '}';
+//    }
     @Override
     public String toString() {
-        return "CardForParsing{" +
-                "rank=" + rank +
-                ", suit='" + suit + '\'' +
-                ", kicker=" + kicker +
-                '}';
+        return "{" + rank + " " + suit + " " + kicker +'}';
     }
 
     public String cardRankSuitInfo() {

@@ -3,8 +3,9 @@ package holdem.texasHoldem.mainSortingService;
 
 import holdem.core.mappers.CardRankMapper;
 import holdem.texasHoldem.DataInputConversionService;
-import holdem.texasHoldem.DataOutputConversionService;
+import holdem.texasHoldem.DataOutputSortingService;
 import holdem.texasHoldem.MainSortingService;
+import holdem.texasHoldem.OutputStringBuildingService;
 import holdem.texasHoldem.strengthCalculationServices.HandRankCalculationService;
 import holdem.texasHoldem.strengthCalculationServices.PairRangCalculationService;
 import holdem.texasHoldem.strengthCalculationServices.StraightAndSuitedRangCalculationService;
@@ -17,7 +18,8 @@ public class PairAndStraightSuitedCombinationControversialTests {
     private final MainSortingService victim = new MainSortingService(
             new DataInputConversionService(new UserInputValidation(), new CardRankMapper()),
             new HandRankCalculationService(new PairRangCalculationService(), new StraightAndSuitedRangCalculationService()),
-            new DataOutputConversionService(new CardRankMapper()));
+            new DataOutputSortingService(),
+            new OutputStringBuildingService(new CardRankMapper()));
 
     @Test//5
     public void flashWithTwoFullHouses() {
@@ -59,6 +61,28 @@ public class PairAndStraightSuitedCombinationControversialTests {
         String result = victim.mainSorting("6h3d5c7s4s 6s7c 4d5d");
 
         assertEquals("6s7c=4d5d", result);
+    }
+
+    @Test
+    public void threeFlashesRoyals(){
+        String result = victim.mainSorting("6h8h5h7h4h 2h3h AhKh 9h2s ThQh");
+
+        assertEquals("2h3h=AhKh=ThQh 9h2s", result);
+    }
+
+
+    @Test
+    public void threeFullHouses() {
+        String result = victim.mainSorting("2s2c2h3h3d 2d7s 3h3s TcKh");
+
+        assertEquals("TcKh 2d7s 3h3s", result);
+    }
+
+    @Test
+    public void twoFourOfKing() {
+        String result = victim.mainSorting("2s2c2h3h3d 2d7s 3h3s TcKh");
+
+        assertEquals("TcKh 2d7s 3h3s", result);
     }
 
 }

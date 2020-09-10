@@ -3,8 +3,9 @@ package holdem.texasHoldem.mainSortingService;
 
 import holdem.core.mappers.CardRankMapper;
 import holdem.texasHoldem.DataInputConversionService;
-import holdem.texasHoldem.DataOutputConversionService;
+import holdem.texasHoldem.DataOutputSortingService;
 import holdem.texasHoldem.MainSortingService;
+import holdem.texasHoldem.OutputStringBuildingService;
 import holdem.texasHoldem.strengthCalculationServices.HandRankCalculationService;
 import holdem.texasHoldem.strengthCalculationServices.PairRangCalculationService;
 import holdem.texasHoldem.strengthCalculationServices.StraightAndSuitedRangCalculationService;
@@ -17,7 +18,8 @@ public class StraightAndSuitedCombinationTests {
     private final MainSortingService victim = new MainSortingService(
             new DataInputConversionService(new UserInputValidation(), new CardRankMapper()),
             new HandRankCalculationService(new PairRangCalculationService(), new StraightAndSuitedRangCalculationService()),
-            new DataOutputConversionService(new CardRankMapper()));
+            new DataOutputSortingService(),
+            new OutputStringBuildingService(new CardRankMapper()));
 
     @Test//3
     public void bankDivisionStraightSimilarCards() {
@@ -28,23 +30,23 @@ public class StraightAndSuitedCombinationTests {
 
     @Test//13
     public void twoFlashes() {
-        String result = victim.mainSorting("2sJs3s3c2h 8s9s 7sTs QsKs");
+        String result = victim.mainSorting("2sJs3s3c2h 8s9s QsKs 7sTs");
 
         assertEquals("8s9s 7sTs QsKs", result);
     }
 
     @Test//16
     public void twoStraights() {
-        String result = victim.mainSorting("6d8sJc9hTs QsAc 7h7c");
+        String result = victim.mainSorting("6d8sJc9hTs QsAc 7h7c QhAh");
 
-        assertEquals("7h7c QsAc", result);
+        assertEquals("7h7c QsAc=QhAh", result);
     }
 
     @Test//19
     public void flashAndStraight() {
-        String result = victim.mainSorting("ThJdKhJc2h Ah3h AdQs");
+        String result = victim.mainSorting("ThJdKhJc2h Ah3h AdQs AsQh 2h7s");
 
-        assertEquals("AdQs Ah3h", result);
+        assertEquals("2h7s AdQs=AsQh Ah3h", result);
     }
 
     @Test//20
@@ -63,8 +65,8 @@ public class StraightAndSuitedCombinationTests {
 
     @Test//25
     public void twoStraight() {
-        String result = victim.mainSorting("7d8sJcTs9h KdQc 7h7c");
+        String result = victim.mainSorting("7d8sJcTs9h KdQc 7h7c Qh3s");
 
-        assertEquals("7h7c KdQc", result);
+        assertEquals("7h7c Qh3s KdQc", result);
     }
 }

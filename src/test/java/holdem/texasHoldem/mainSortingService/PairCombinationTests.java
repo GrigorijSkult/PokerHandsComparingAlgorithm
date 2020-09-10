@@ -3,8 +3,9 @@ package holdem.texasHoldem.mainSortingService;
 
 import holdem.core.mappers.CardRankMapper;
 import holdem.texasHoldem.DataInputConversionService;
-import holdem.texasHoldem.DataOutputConversionService;
+import holdem.texasHoldem.DataOutputSortingService;
 import holdem.texasHoldem.MainSortingService;
+import holdem.texasHoldem.OutputStringBuildingService;
 import holdem.texasHoldem.strengthCalculationServices.HandRankCalculationService;
 import holdem.texasHoldem.strengthCalculationServices.PairRangCalculationService;
 import holdem.texasHoldem.strengthCalculationServices.StraightAndSuitedRangCalculationService;
@@ -17,7 +18,8 @@ public class PairCombinationTests {
     private final MainSortingService victim = new MainSortingService(
             new DataInputConversionService(new UserInputValidation(), new CardRankMapper()),
             new HandRankCalculationService(new PairRangCalculationService(), new StraightAndSuitedRangCalculationService()),
-            new DataOutputConversionService(new CardRankMapper()));
+            new DataOutputSortingService(),
+            new OutputStringBuildingService(new CardRankMapper()));
 
     @Test//1
     public void bankDivisionSquare() {

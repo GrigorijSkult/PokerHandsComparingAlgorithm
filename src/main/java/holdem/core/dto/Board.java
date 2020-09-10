@@ -2,10 +2,11 @@ package holdem.core.dto;
 
 import holdem.core.domain.CardForParsing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Board {
+public class Board implements Serializable {
 
     private final ArrayList<CardForParsing> cards;
 
