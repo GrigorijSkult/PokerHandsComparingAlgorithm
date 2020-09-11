@@ -60,17 +60,13 @@ public class CardForParsing implements Serializable {
         return Objects.hash(rank, suit, kicker);
     }
 
-//    @Override
-//    public String toString() {
-//        return "CardForParsing{" +
-//                "rank=" + rank +
-//                ", suit='" + suit + '\'' +
-//                ", kicker=" + kicker +
-//                '}';
-//    }
     @Override
     public String toString() {
-        return "{" + rank + " " + suit + " " + kicker +'}';
+        return "CardForParsing{" +
+                "rank=" + rank +
+                ", suit='" + suit + '\'' +
+                ", kicker=" + kicker +
+                '}';
     }
 
     public String cardRankSuitInfo() {

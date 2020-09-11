@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static holdem.core.dto.CalculationResultDto.FlashArrayComparator;
-import static holdem.core.dto.CalculationResultDto.HandStrengthsArrayComparator;
+import static holdem.core.dto.CalculationResultDto.*;
 
 public class DataOutputSortingService {
 
@@ -42,8 +41,7 @@ public class DataOutputSortingService {
                     for (int i = 0; i < oneStrengthHand.getValue().size(); i++) {
                         CalculationResultDto resultOne = oneStrengthHand.getValue().get(i);
                         CalculationResultDto resultTwo = oneStrengthHand.getValue().get(i + 1 >= oneStrengthHand.getValue().size() ? i : i + 1);
-                        switch (choseHighCombinationByKicker(resultOne.getCombinationCards(), resultTwo.getCombinationCards(),
-                                oneStrengthHand.getKey())) {
+                        switch (choseHighCombinationByKicker(resultOne.getCombinationCards(), resultTwo.getCombinationCards(), oneStrengthHand.getKey())) {
                             case 1:
                                 resultOne.setHandStrengths(handStrengths + oneStrengthHandNumber);
                                 oneStrengthHandNumber -= 0.001;
@@ -76,7 +74,7 @@ public class DataOutputSortingService {
                 }
             }
         } else {
-            for (int i = combinationCardsOne.size() - 1; i > 0; i--) {
+            for (int i = combinationCardsOne.size() - 1; i >= 0; i--) {
                 if (combinationCardsOne.get(i).getRank() > combinationCardsTwo.get(i).getRank()) {
                     return 1;
                 } else if (combinationCardsOne.get(i).getRank() < combinationCardsTwo.get(i).getRank()) {

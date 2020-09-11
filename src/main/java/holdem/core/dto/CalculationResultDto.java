@@ -59,26 +59,11 @@ public class CalculationResultDto {
         public int compare(CalculationResultDto c1, CalculationResultDto c2) {
             ArrayList<CardForParsing> k1 = c1.getCombinationCards();
             ArrayList<CardForParsing> k2 = c2.getCombinationCards();
-            for (int i = k1.size() - 1; i > 0; i--) {
-                byte card1 = k1.get(i).getRank();
-                byte card2 = k2.get(i).getRank();
-                if (card1 != card2) {
-                    return Byte.compare(card2, card1);//ascending order
-                }
-            }
-            return 0;
-        }
-    };
-
-    public static Comparator<CalculationResultDto> FlashArrayMaxComparator = new Comparator<CalculationResultDto>() {
-        public int compare(CalculationResultDto c1, CalculationResultDto c2) {
-            ArrayList<CardForParsing> k1 = c1.getCombinationCards();
-            ArrayList<CardForParsing> k2 = c2.getCombinationCards();
             for (int i = 0; i < k1.size() - 1; i++) {
                 byte card1 = k1.get(i).getRank();
                 byte card2 = k2.get(i).getRank();
                 if (card1 != card2) {
-                    return Byte.compare(card2, card1);//ascending order
+                    return Byte.compare(card2, card1);
                 }
             }
             return 0;
