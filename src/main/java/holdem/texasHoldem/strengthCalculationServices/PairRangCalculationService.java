@@ -11,6 +11,7 @@ import java.util.List;
 import static holdem.core.domain.CardForParsing.CardForParsingRankComparator;
 
 public class PairRangCalculationService {
+
     public RankCalculationDto calculation(Hand hand, Board board) {
         RankCalculationDto outData = new RankCalculationDto();
         List<CardForParsing> playableCards = new ArrayList<>();
@@ -47,6 +48,7 @@ public class PairRangCalculationService {
                 i++;
             }
         }
+
         if (!pairCards.isEmpty()) {
             boolean twoPairsDouble = twoPairCounter > 1;
             boolean setPairsDouble = setCounter > 1;

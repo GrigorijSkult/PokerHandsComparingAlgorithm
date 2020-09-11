@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class HandRankCalculationService {
+
     private final PairRangCalculationService pairRangCalculationService;
     private final StraightAndSuitedRangCalculationService straightAndSuitedRangCalculationService;
 
@@ -56,8 +57,8 @@ public class HandRankCalculationService {
     private static Object deepCopy(Object object) {
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            ObjectOutputStream outputStrm = new ObjectOutputStream(outputStream);
-            outputStrm.writeObject(object);
+            ObjectOutputStream outputSt = new ObjectOutputStream(outputStream);
+            outputSt.writeObject(object);
             ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
             ObjectInputStream objInputStream = new ObjectInputStream(inputStream);
             return objInputStream.readObject();

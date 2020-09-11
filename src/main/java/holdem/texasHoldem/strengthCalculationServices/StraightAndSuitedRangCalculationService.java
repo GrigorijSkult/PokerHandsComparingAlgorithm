@@ -11,6 +11,7 @@ import java.util.List;
 import static holdem.core.domain.CardForParsing.CardForParsingRankComparator;
 
 public class StraightAndSuitedRangCalculationService {
+
     public RankCalculationDto calculation(Hand hand, Board board) {
         RankCalculationDto outData = new RankCalculationDto();
         ArrayList<CardForParsing> playableCards = new ArrayList<>();

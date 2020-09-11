@@ -81,7 +81,7 @@ public class StraightAndSuitedRangCalculationServiceTest {
     }
 
     @Test
-    public void flashIII() {////?8-c / 6-s
+    public void flashIII() {
         RankCalculationDto result = victim.calculation(hand("s", (byte) 8, "s", (byte) 4),
                 board("s", (byte) 2, "h", (byte) 2, "s", (byte) 5, "c", (byte) 6, "s", (byte) 3));
 

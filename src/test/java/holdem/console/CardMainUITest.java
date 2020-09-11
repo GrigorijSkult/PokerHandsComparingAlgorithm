@@ -41,5 +41,4 @@ public class CardMainUITest {
 
         assertEquals("2c6h 8h4s 9c4h=9h6c 6sKs Kd9s TcKh 8cAs 3hTs", result);
     }
-
 }
