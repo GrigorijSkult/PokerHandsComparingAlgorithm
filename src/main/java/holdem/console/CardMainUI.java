@@ -13,6 +13,8 @@ import holdem.texasHoldem.validation.UserInputValidation;
 import java.util.Scanner;
 
 public class CardMainUI {
+
+    public static String gameType = "texas";
     private final MainSortingService mainSortingService;
 
     public CardMainUI() {
@@ -28,6 +30,11 @@ public class CardMainUI {
         String userInput = sc.nextLine();
         while (userInput != null) {
             try {
+                if (userInput.equals("--omaha")) {
+                    gameType = "omaha";
+                } else if (userInput.equals("--texas")) {
+                    gameType = "texas";
+                }
                 String result = mainSortingService.mainSorting(userInput);
                 System.out.println(result);
             } catch (IllegalArgumentException e) {

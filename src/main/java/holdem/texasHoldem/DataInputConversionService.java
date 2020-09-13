@@ -25,16 +25,16 @@ public class DataInputConversionService {
         String[] parts = userInput.split(" ");
         int i = 1;
         for (String part : parts) {
-            if (part.length() != 0 && part.length() % 5 == 0) {
-                handsAndBoardDto.setBoard(new Board(cardCreation(part)));
+            if (part.length() != 0 && part.length() % 10 == 0) {
+                handsAndBoardDto.setBoard(new Board(cardCreation(part, false)));
             } else {
-                handsAndBoardDto.addHand(new Hand(cardCreation(part)));
+                handsAndBoardDto.addHand(new Hand(cardCreation(part, true)));
             }
         }
         return handsAndBoardDto;
     }
 
-    private ArrayList<CardForParsing> cardCreation(String part) {
+    private ArrayList<CardForParsing> cardCreation(String part, boolean handCard) {
         List<CardForParsing> detectedCards = new ArrayList<>();
         ArrayList<CardForParsing> carts = new ArrayList<>();
         byte x = 0;
@@ -48,6 +48,9 @@ public class DataInputConversionService {
                     letterArray[y]
             );
             userInputValidation.cardNumberValidation(newCard, detectedCards);
+            if (handCard) {
+                newCard.setHandCard(true);
+            }
             carts.add(newCard);
             x += 2;
             y += 2;

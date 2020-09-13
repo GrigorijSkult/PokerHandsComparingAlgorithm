@@ -8,16 +8,18 @@ public class CardForParsing implements Serializable {
     private final byte rank;
     private final String suit;
     private boolean kicker = false;
+    private boolean handCard = false;
 
     public CardForParsing(byte rank, String suit) {
         this.rank = rank;
         this.suit = suit;
     }
 
-    public CardForParsing(byte rank, String suit, boolean kicker) {
+    public CardForParsing(byte rank, String suit, boolean kicker, boolean handCard) {
         this.rank = rank;
         this.suit = suit;
         this.kicker = kicker;
+        this.handCard = handCard;
     }
 
     public byte getRank() {
@@ -36,6 +38,14 @@ public class CardForParsing implements Serializable {
         this.kicker = kicker;
     }
 
+    public boolean isHandCard() {
+        return handCard;
+    }
+
+    public void setHandCard(boolean handCard) {
+        this.handCard = handCard;
+    }
+
     public static Comparator<CardForParsing> CardForParsingRankComparator = new Comparator<CardForParsing>() {
         public int compare(CardForParsing c1, CardForParsing c2) {
             byte CardForParsingOne = c1.rank;
@@ -49,15 +59,16 @@ public class CardForParsing implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CardForParsing cardForParsing = (CardForParsing) o;
-        return rank == cardForParsing.rank &&
-                kicker == cardForParsing.kicker &&
-                Objects.equals(suit, cardForParsing.suit);
+        CardForParsing that = (CardForParsing) o;
+        return rank == that.rank &&
+                kicker == that.kicker &&
+                handCard == that.handCard &&
+                Objects.equals(suit, that.suit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rank, suit, kicker);
+        return Objects.hash(rank, suit, kicker, handCard);
     }
 
     @Override
@@ -66,6 +77,7 @@ public class CardForParsing implements Serializable {
                 "rank=" + rank +
                 ", suit='" + suit + '\'' +
                 ", kicker=" + kicker +
+                ", handCard=" + handCard +
                 '}';
     }
 

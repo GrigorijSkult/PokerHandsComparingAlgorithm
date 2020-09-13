@@ -1,11 +1,13 @@
 package holdem.texasHoldem;
 
+import holdem.console.CardMainUI;
 import holdem.core.domain.CardForParsing;
 import holdem.core.dto.Board;
 import holdem.core.dto.Hand;
 import holdem.core.dto.HandsAndBoardDto;
 import holdem.core.mappers.CardRankMapper;
 import holdem.texasHoldem.validation.UserInputValidation;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,6 +20,11 @@ public class DataInputConversionServiceTest {
     private final DataInputConversionService victim = new DataInputConversionService(
             new UserInputValidation(),
             new CardRankMapper());
+
+    @Before
+    public void start(){
+        CardMainUI.gameType = "texas";
+    }
 
     @Test
     public void correctOutput() {
@@ -32,16 +39,16 @@ public class DataInputConversionServiceTest {
                         new CardForParsing((byte) 7, "s")))), result.getBoard());
         assertEquals(new Hand(new ArrayList<>(
                 Arrays.asList(
-                        new CardForParsing((byte) 14, "d"),
-                        new CardForParsing((byte) 4, "s")))), result.getHands().get(0));
+                        new CardForParsing((byte) 14, "d", false, true),
+                        new CardForParsing((byte) 4, "s", false, true)))), result.getHands().get(0));
         assertEquals(new Hand(new ArrayList<>(
                 Arrays.asList(
-                        new CardForParsing((byte) 14, "c"),
-                        new CardForParsing((byte) 4, "d")))), result.getHands().get(1));
+                        new CardForParsing((byte) 14, "c", false, true),
+                        new CardForParsing((byte) 4, "d", false, true)))), result.getHands().get(1));
         assertEquals(new Hand(new ArrayList<>(
                 Arrays.asList(
-                        new CardForParsing((byte) 14, "s"),
-                        new CardForParsing((byte) 9, "s")))), result.getHands().get(2));
+                        new CardForParsing((byte) 14, "s", false, true),
+                        new CardForParsing((byte) 9, "s", false, true)))), result.getHands().get(2));
     }
 
 
@@ -111,6 +118,14 @@ public class DataInputConversionServiceTest {
     @Test
     public void incorrectTenRankException() {
         assertThatThrownBy(() -> victim.inputConversion("6h3d5c7s4s 10hQd"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Incorrect number of entered hands cards;");
+    }
+
+    @Test
+    public void omahaHandException() {
+        CardMainUI.gameType = "omaha";
+        assertThatThrownBy(() -> victim.inputConversion("6h3d5c7s4s 6h3d4h"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Incorrect number of entered hands cards;");
     }

@@ -22,6 +22,7 @@ public class MainSortingService {
     }
 
     public String mainSorting(String userInputData) {
+
         HandsAndBoardDto handsAndBoardDto = dataInputConversionService.inputConversion(userInputData);
 
         ArrayList<CalculationResultDto> handsCalculationResults = handRankCalculationService.calculation(handsAndBoardDto);

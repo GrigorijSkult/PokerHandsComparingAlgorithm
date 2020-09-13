@@ -1,5 +1,6 @@
 package holdem.texasHoldem.strengthCalculationServices;
 
+import holdem.console.CardMainUI;
 import holdem.core.domain.CardForParsing;
 import holdem.core.dto.Board;
 import holdem.core.dto.Hand;
@@ -34,9 +35,11 @@ public class StraightAndSuitedRangCalculationService {
 
         if (fullStraightFlashSet) {
             makeFiveCardSet(straightFlashCardSet);
+            fullStraightFlashSet = (!straightFlashCardSet.isEmpty() && straightFlashCardSet.size() >= 5);
         } else {
             if (fullOneSuitCardSet) {
                 makeFiveCardSet(oneSuitCardSet);
+                fullOneSuitCardSet = (!oneSuitCardSet.isEmpty() && oneSuitCardSet.size() >= 5);
             }
             if (fullStraightCardSet) {
                 makeFiveStraightCardSet(straightCardSet);
@@ -159,8 +162,33 @@ public class StraightAndSuitedRangCalculationService {
     }
 
     private void makeFiveCardSet(ArrayList<CardForParsing> cardSet) {
-        while (cardSet.size() > 5) {
-            cardSet.remove(0);
+        if (CardMainUI.gameType.equals("texas")) {
+            while (cardSet.size() > 5) {
+                cardSet.remove(0);
+            }
+        } else if (CardMainUI.gameType.equals("omaha")) {
+            int handCardCounter = 0;
+            for (CardForParsing cardForParsing : cardSet) {
+                if (cardForParsing.isHandCard()) {
+                    handCardCounter++;
+                }
+            }
+            if (handCardCounter >= 2) {
+                int i = 0;
+                while (cardSet.size() > 5) {
+                    if (cardSet.get(i).isHandCard()) {
+                        if (handCardCounter > 2) {
+                            cardSet.remove(i);
+                            handCardCounter--;
+                        } else {
+                            i++;
+                        }
+                    } else {
+                        cardSet.remove(i);
+                        handCardCounter--;
+                    }
+                }
+            }
         }
     }
 
@@ -173,9 +201,10 @@ public class StraightAndSuitedRangCalculationService {
                 i--;
             }
         }
-        while (cardSet.size() > 5) {
-            cardSet.remove(0);
-        }
+        makeFiveCardSet(cardSet);
+//        while (cardSet.size() > 5) {
+//            cardSet.remove(0);
+//        }
     }
 
     private double straightAndSuitedRangValue(boolean suitedCards, boolean straightCards, boolean straightFlash, ArrayList<CardForParsing> straightFlashSet) {

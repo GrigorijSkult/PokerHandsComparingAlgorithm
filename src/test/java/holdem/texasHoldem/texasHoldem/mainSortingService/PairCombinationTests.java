@@ -1,5 +1,5 @@
 //https://pokeristby.ru/baza-znaniy/primery-po-opredeleniju-vyigryshnoj-kombinatsij-na-vskrytii-post-387/
-package holdem.texasHoldem.mainSortingService;
+package holdem.texasHoldem.texasHoldem.mainSortingService;
 
 import holdem.core.mappers.CardRankMapper;
 import holdem.texasHoldem.DataInputConversionService;

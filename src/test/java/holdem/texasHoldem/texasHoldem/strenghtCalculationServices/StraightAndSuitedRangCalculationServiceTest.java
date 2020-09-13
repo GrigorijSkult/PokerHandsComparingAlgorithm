@@ -1,4 +1,4 @@
-package holdem.texasHoldem.strenghtCalculationServices;
+package holdem.texasHoldem.texasHoldem.strenghtCalculationServices;
 
 import holdem.core.domain.CardForParsing;
 import holdem.core.dto.Board;
