@@ -35,12 +35,12 @@ public class DataOutputSortingService {
         if (!oneStrengthHandsMap.isEmpty()) {
             for (Map.Entry<Double, ArrayList<CalculationResultDto>> oneStrengthHand : oneStrengthHandsMap.entrySet()) {
                 oneStrengthHand.getValue().sort(FlashArrayComparator);
-                for (CalculationResultDto value : oneStrengthHand.getValue()) {
-                    Double handStrengths = value.getHandStrengths();
-                    double oneStrengthHandNumber = oneStrengthHand.getValue().size() * 0.001;
-                    for (int i = 0; i < oneStrengthHand.getValue().size(); i++) {
-                        CalculationResultDto resultOne = oneStrengthHand.getValue().get(i);
-                        CalculationResultDto resultTwo = oneStrengthHand.getValue().get(i + 1 >= oneStrengthHand.getValue().size() ? i : i + 1);
+                Double handStrengths = oneStrengthHand.getKey();
+                double oneStrengthHandNumber = oneStrengthHand.getValue().size() * 0.01;
+                for (int i = 0; i < oneStrengthHand.getValue().size(); i++) {
+                    CalculationResultDto resultOne = oneStrengthHand.getValue().get(i);
+                    CalculationResultDto resultTwo = oneStrengthHand.getValue().get(i + 1 >= oneStrengthHand.getValue().size() ? i : i + 1);
+                    if (!resultOne.equals(resultTwo)) {
                         switch (choseHighCombinationByKicker(resultOne.getCombinationCards(), resultTwo.getCombinationCards(), oneStrengthHand.getKey())) {
                             case 1:
                                 resultOne.setHandStrengths(handStrengths + oneStrengthHandNumber);
@@ -65,8 +65,8 @@ public class DataOutputSortingService {
     }
 
     private int choseHighCombinationByKicker(ArrayList<CardForParsing> combinationCardsOne, ArrayList<CardForParsing> combinationCardsTwo, double key) {
-        if (key == 2 || key == 3 || key == 4 || key == 7 || key == 8) {
-            for (int i = 0; i < combinationCardsOne.size(); i++) {
+        if (key == 5 || key == 6 || key == 9 || key == 10) {
+            for (int i = combinationCardsOne.size() - 1; i >= 0; i--) {
                 if (combinationCardsOne.get(i).getRank() > combinationCardsTwo.get(i).getRank()) {
                     return 1;
                 } else if (combinationCardsOne.get(i).getRank() < combinationCardsTwo.get(i).getRank()) {
@@ -74,7 +74,7 @@ public class DataOutputSortingService {
                 }
             }
         } else {
-            for (int i = combinationCardsOne.size() - 1; i >= 0; i--) {
+            for (int i = 0; i < combinationCardsOne.size(); i++) {
                 if (combinationCardsOne.get(i).getRank() > combinationCardsTwo.get(i).getRank()) {
                     return 1;
                 } else if (combinationCardsOne.get(i).getRank() < combinationCardsTwo.get(i).getRank()) {

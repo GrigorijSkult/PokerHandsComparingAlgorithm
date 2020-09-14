@@ -41,4 +41,22 @@ public class CardMainUITest {
 
         assertEquals("2c6h 8h4s 9c4h=9h6c 6sKs Kd9s TcKh 8cAs 3hTs", result);
     }
+
+    @Test
+    public void runMainUI0004() {
+        assertEquals("2cJc Ks4c=Kh4h Kc7h KdJs 6h7d 2hAh",
+                victim.mainSorting("5c6dAcAsQs Ks4c KdJs 2hAh Kh4h Kc7h 6h7d 2cJc"));
+    }
+
+    @Test
+    public void runMainUI0005() {
+        assertEquals("9h7h 2dTc KcAs 7sJd TsJc Qh8c 5c4h",
+                victim.mainSorting("3d4s5dJsQd 5c4h 7sJd KcAs 9h7h 2dTc Qh8c TsJc"));
+    }
+
+    @Test
+    public void runMainUI0006() {
+        assertEquals("3sKc KhTd Kd7c=7sTs Ac8s AdQc 4d3c",
+                victim.mainSorting("5d5h6d7dAh 3sKc KhTd Kd7c Ac8s 4d3c AdQc 7sTs"));
+    }
 }

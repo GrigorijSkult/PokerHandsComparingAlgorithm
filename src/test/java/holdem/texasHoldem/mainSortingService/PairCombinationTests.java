@@ -125,4 +125,10 @@ public class PairCombinationTests {
 
         assertEquals("KhJc KdQs", result);
     }
+
+    @Test
+    public void threeSimilarPair() {
+        assertEquals("2cJc Ks4c=Kh4h=Kc3h KdJs 6h7d 2hAh",
+                victim.mainSorting("5c6dAcAsQs Ks4c KdJs 2hAh Kh4h Kc3h 6h7d 2cJc"));
+    }
 }

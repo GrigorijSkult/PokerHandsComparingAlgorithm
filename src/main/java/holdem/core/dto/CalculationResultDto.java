@@ -59,7 +59,7 @@ public class CalculationResultDto {
         public int compare(CalculationResultDto c1, CalculationResultDto c2) {
             ArrayList<CardForParsing> k1 = c1.getCombinationCards();
             ArrayList<CardForParsing> k2 = c2.getCombinationCards();
-            for (int i = 0; i < k1.size() - 1; i++) {
+            for (int i = 0; i < k1.size(); i++) {
                 byte card1 = k1.get(i).getRank();
                 byte card2 = k2.get(i).getRank();
                 if (card1 != card2) {
