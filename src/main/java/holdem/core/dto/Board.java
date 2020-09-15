@@ -33,8 +33,6 @@ public class Board implements Serializable {
 
     @Override
     public String toString() {
-        return "Board{" +
-                "cards=" + cards +
-                '}';
+        return "Board{" + cards + '}';
     }
 }

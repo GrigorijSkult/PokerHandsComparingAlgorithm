@@ -60,20 +60,10 @@ public class DataOutputSortingService {
             }
         }
         handsCalculationResults.sort(HandStrengthsArrayComparator);
-
         return handsCalculationResults;
     }
 
     private int choseHighCombinationByKicker(ArrayList<CardForParsing> combinationCardsOne, ArrayList<CardForParsing> combinationCardsTwo, double key) {
-        if (key == 5 || key == 6 || key == 9 || key == 10) {
-            for (int i = combinationCardsOne.size() - 1; i >= 0; i--) {
-                if (combinationCardsOne.get(i).getRank() > combinationCardsTwo.get(i).getRank()) {
-                    return 1;
-                } else if (combinationCardsOne.get(i).getRank() < combinationCardsTwo.get(i).getRank()) {
-                    return 2;
-                }
-            }
-        } else {
             for (int i = 0; i < combinationCardsOne.size(); i++) {
                 if (combinationCardsOne.get(i).getRank() > combinationCardsTwo.get(i).getRank()) {
                     return 1;
@@ -81,7 +71,6 @@ public class DataOutputSortingService {
                     return 2;
                 }
             }
-        }
         return 0;
     }
 }

@@ -40,8 +40,17 @@ public class CardForParsing implements Serializable {
         public int compare(CardForParsing c1, CardForParsing c2) {
             byte CardForParsingOne = c1.rank;
             byte CardForParsingTwo = c2.rank;
-            //ascending order
+
             return CardForParsingOne - CardForParsingTwo;
+        }
+    };
+
+    public static Comparator<CardForParsing> CardForParsingRankReversComparator = new Comparator<CardForParsing>() {
+        public int compare(CardForParsing c1, CardForParsing c2) {
+            byte CardForParsingOne = c1.rank;
+            byte CardForParsingTwo = c2.rank;
+
+            return CardForParsingTwo - CardForParsingOne;
         }
     };
 
@@ -62,12 +71,8 @@ public class CardForParsing implements Serializable {
 
     @Override
     public String toString() {
-        return "CardForParsing{" +
-                "rank=" + rank +
-                ", suit='" + suit + '\'' +
-                ", kicker=" + kicker +
-                '}';
-    }
+        return "{"+ rank + " " + suit + " " + kicker + "}";
+        }
 
     public String cardRankSuitInfo() {
         return rank + suit;

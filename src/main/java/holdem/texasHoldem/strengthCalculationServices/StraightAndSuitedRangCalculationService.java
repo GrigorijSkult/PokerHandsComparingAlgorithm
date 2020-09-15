@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static holdem.core.domain.CardForParsing.CardForParsingRankComparator;
+import static holdem.core.domain.CardForParsing.CardForParsingRankReversComparator;
 
 public class StraightAndSuitedRangCalculationService {
 
@@ -57,6 +58,7 @@ public class StraightAndSuitedRangCalculationService {
             outData.setSelectedCards(playableCards);
         }
 
+        outData.getSelectedCards().sort(CardForParsingRankReversComparator);
         return outData;
     }
 

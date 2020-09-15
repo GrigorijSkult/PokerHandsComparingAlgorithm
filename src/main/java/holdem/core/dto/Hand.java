@@ -38,8 +38,6 @@ public class Hand implements Serializable {
 
     @Override
     public String toString() {
-        return "Hand{" +
-                ", cards=" + cards +
-                '}';
+        return "Hand{" + cards + '}';
     }
 }
