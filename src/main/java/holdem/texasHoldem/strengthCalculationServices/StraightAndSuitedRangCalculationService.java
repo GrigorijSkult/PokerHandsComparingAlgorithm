@@ -8,7 +8,6 @@ import holdem.core.dto.RankCalculationDto;
 import java.util.ArrayList;
 import java.util.List;
 
-import static holdem.core.domain.CardForParsing.CardForParsingRankComparator;
 import static holdem.core.domain.CardForParsing.CardForParsingRankReversComparator;
 
 public class StraightAndSuitedRangCalculationService {
@@ -18,7 +17,7 @@ public class StraightAndSuitedRangCalculationService {
         ArrayList<CardForParsing> playableCards = new ArrayList<>();
         playableCards.addAll(hand.getCards());
         playableCards.addAll(board.getCards());
-        playableCards.sort(CardForParsingRankComparator);
+        playableCards.sort(CardForParsingRankReversComparator);
 
         ArrayList<CardForParsing> oneSuitCardSet = oneSuitCardsSearch(playableCards);
         boolean fullOneSuitCardSet = (!oneSuitCardSet.isEmpty() && oneSuitCardSet.size() >= 5);
@@ -58,7 +57,6 @@ public class StraightAndSuitedRangCalculationService {
             outData.setSelectedCards(playableCards);
         }
 
-        outData.getSelectedCards().sort(CardForParsingRankReversComparator);
         return outData;
     }
 
@@ -119,8 +117,7 @@ public class StraightAndSuitedRangCalculationService {
         for (int i = 0; i < straightCardSet.size() - 1; ) {
             CardForParsing cardOne = straightCardSet.get(i);
             CardForParsing cardTwo = straightCardSet.get(i + 1 >= straightCardSet.size() ? i : i + 1);
-
-            if ((cardOne.getRank() + 1 == cardTwo.getRank()) || (cardOne.getRank() == cardTwo.getRank())) {
+            if ((cardOne.getRank() - 1 == cardTwo.getRank()) || (cardOne.getRank() == cardTwo.getRank())) {
                 if (cardOne.getRank() == cardTwo.getRank()) {
                     oneRangCounter++;
                 }
@@ -162,7 +159,7 @@ public class StraightAndSuitedRangCalculationService {
 
     private void makeFiveCardSet(ArrayList<CardForParsing> cardSet) {
         while (cardSet.size() > 5) {
-            cardSet.remove(0);
+            cardSet.remove(cardSet.size()-1);
         }
     }
 
@@ -175,16 +172,14 @@ public class StraightAndSuitedRangCalculationService {
                 i--;
             }
         }
-        while (cardSet.size() > 5) {
-            cardSet.remove(0);
-        }
+        makeFiveCardSet(cardSet);
     }
 
     private double straightAndSuitedRangValue(boolean suitedCards, boolean straightCards, boolean straightFlash, ArrayList<CardForParsing> straightFlashSet) {
         if (straightCards) {
             if (suitedCards) {
                 if (straightFlash) {
-                    if (straightFlashSet.get(4).getRank() == 14) {
+                    if (straightFlashSet.get(0).getRank() == 14) {
                         return 10.00;
                     }
                     return 9.00;

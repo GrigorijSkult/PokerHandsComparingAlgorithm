@@ -50,7 +50,6 @@ public class CalculationResultDto {
             double CalculationResultDtoOne = c1.getHandStrengths();
             double CalculationResultDtoTwo = c2.getHandStrengths();
 
-            //ascending order
             return Double.compare(CalculationResultDtoOne, CalculationResultDtoTwo);
         }
     };
