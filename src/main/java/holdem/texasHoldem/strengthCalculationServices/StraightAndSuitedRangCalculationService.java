@@ -114,10 +114,16 @@ public class StraightAndSuitedRangCalculationService {
         ArrayList<CardForParsing> straightCardSet = new ArrayList<>(playableCards);
         int straightCounter = 0;
         int oneRangCounter = 0;
+        ////
+        if(playableCards.get(0).getRank() == 14 && playableCards.get (playableCards.size()-1).getRank() == 2){
+            straightCardSet.add(playableCards.get(0));
+        }
+        ///
         for (int i = 0; i < straightCardSet.size() - 1; ) {
             CardForParsing cardOne = straightCardSet.get(i);
             CardForParsing cardTwo = straightCardSet.get(i + 1 >= straightCardSet.size() ? i : i + 1);
-            if ((cardOne.getRank() - 1 == cardTwo.getRank()) || (cardOne.getRank() == cardTwo.getRank())) {
+            if ((cardOne.getRank() - 1 == cardTwo.getRank()) || (cardOne.getRank() == cardTwo.getRank()) ||
+                    (cardOne.getRank() == 2 && cardTwo.getRank() == 14)) {
                 if (cardOne.getRank() == cardTwo.getRank()) {
                     oneRangCounter++;
                 }

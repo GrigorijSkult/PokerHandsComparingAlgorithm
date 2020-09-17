@@ -59,4 +59,10 @@ public class CardMainUITest {
         assertEquals("3sKc KhTd Kd7c=7sTs Ac8s AdQc 4d3c",
                 victim.mainSorting("5d5h6d7dAh 3sKc KhTd Kd7c Ac8s 4d3c AdQc 7sTs"));
     }
+
+    @Test
+    public void runMainUI0007() {
+        assertEquals("Ts8h Js2d Jh8d TdQs 2h5d",
+                victim.mainSorting("3s4c7c7dAs TdQs Ts8h Jh8d Js2d 2h5d"));
+    }
 }
