@@ -1,7 +1,9 @@
 # Java algorithm for comparing the strength of Texas Hold'em Hands.
 This repository contains working code sample for comparing the strength of Texas Hold'em Hands. 
 The algorithm counts the best possible combination out of 5 board cards and 2 hand cards and perform the 
-standard output of hand list sorted by strength.
+standard output of hand list sorted by strength. 
+
+Project status: comparing the strength of Texas Hold'em hands - _finished, tested_;
 
 
 ## Code Examples
@@ -75,11 +77,6 @@ In the case of the multiple lines input, one line of input corresponds to exactl
 
 
 ## Testing and validation 
-Main classes are covered with unit test. Project contains integration tests (with different poker combinations). Validation of input data is realized.
+Main classes are covered with unit test. Project contains integration tests with different poker combinations. Validation of input data is realized.
 
-## Project Status
-Comparing the strength of:
- 
- - Texas Hold'em hands - _finished_;
- 
- - Omaha Hold'em hands - _in progress_.
+

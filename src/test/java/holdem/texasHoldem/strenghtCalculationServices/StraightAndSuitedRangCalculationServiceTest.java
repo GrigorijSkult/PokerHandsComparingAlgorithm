@@ -113,6 +113,14 @@ public class StraightAndSuitedRangCalculationServiceTest {
     }
 
     @Test
+    public void straightFlashIII() {
+        RankCalculationDto result = victim.calculation(hand("d", (byte) 14, "h", (byte) 12),
+                board("h", (byte) 2, "h", (byte) 3, "h", (byte) 4, "h", (byte) 5, "h", (byte) 14));
+
+        assertEquals(9.00, result.getStrength(), 0);
+    }
+
+    @Test
     public void noHandStraightFlashII() {
         RankCalculationDto result = victim.calculation(hand("c", (byte) 8, "h", (byte) 2),
                 board("s", (byte) 2, "s", (byte) 4, "s", (byte) 5, "s", (byte) 6, "s", (byte) 3));

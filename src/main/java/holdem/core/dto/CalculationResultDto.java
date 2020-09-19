@@ -11,6 +11,7 @@ public class CalculationResultDto {
     private Double handStrengths;
     private ArrayList<CardForParsing> handsPrimaryCombination = new ArrayList<>();
     private ArrayList<CardForParsing> combinationCards = new ArrayList<>();
+    private boolean boardCombination = false;
 
     public CalculationResultDto() {
     }
@@ -19,6 +20,7 @@ public class CalculationResultDto {
         this.handStrengths = handStrengths;
         this.handsPrimaryCombination = handsPrimaryCombination;
         this.combinationCards = combinationCards;
+        boardCombination = false;
     }
 
     public Double getHandStrengths() {
@@ -43,6 +45,14 @@ public class CalculationResultDto {
 
     public void setCombinationCards(ArrayList<CardForParsing> combinationCards) {
         this.combinationCards = combinationCards;
+    }
+
+    public boolean isBoardCombination() {
+        return boardCombination;
+    }
+
+    public void setBoardCombination(boolean boardCombination) {
+        this.boardCombination = boardCombination;
     }
 
     public static Comparator<CalculationResultDto> HandStrengthsArrayComparator = new Comparator<CalculationResultDto>() {
@@ -74,23 +84,24 @@ public class CalculationResultDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CalculationResultDto that = (CalculationResultDto) o;
-        return Objects.equals(handStrengths, that.handStrengths) &&
+        return boardCombination == that.boardCombination &&
+                Objects.equals(handStrengths, that.handStrengths) &&
                 Objects.equals(handsPrimaryCombination, that.handsPrimaryCombination) &&
                 Objects.equals(combinationCards, that.combinationCards);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(handStrengths, handsPrimaryCombination, combinationCards);
+        return Objects.hash(handStrengths, handsPrimaryCombination, combinationCards, boardCombination);
     }
 
     @Override
     public String toString() {
-        return "CalculationDto{" +
-                ", handStrengths=" + handStrengths +
-                ", handsPrimaryCards=" + handsPrimaryCombination +
+        return "CalculationResultDto{" +
+                "handStrengths=" + handStrengths +
+                ", handsPrimaryCombination=" + handsPrimaryCombination +
                 ", combinationCards=" + combinationCards +
+                ", boardCombination=" + boardCombination +
                 '}';
     }
-
 }

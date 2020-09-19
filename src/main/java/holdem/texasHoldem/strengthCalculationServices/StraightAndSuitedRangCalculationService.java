@@ -19,11 +19,11 @@ public class StraightAndSuitedRangCalculationService {
         playableCards.addAll(board.getCards());
         playableCards.sort(CardForParsingRankReversComparator);
 
-        ArrayList<CardForParsing> oneSuitCardSet = oneSuitCardsSearch(playableCards);
-        boolean fullOneSuitCardSet = (!oneSuitCardSet.isEmpty() && oneSuitCardSet.size() >= 5);
-
         ArrayList<CardForParsing> straightCardSet = straightCardSearch(playableCards);
         boolean fullStraightCardSet = (!straightCardSet.isEmpty() && straightCardSet.size() >= 5);
+
+        ArrayList<CardForParsing> oneSuitCardSet = oneSuitCardsSearch(playableCards);
+        boolean fullOneSuitCardSet = (!oneSuitCardSet.isEmpty() && oneSuitCardSet.size() >= 5);
 
         boolean fullStraightFlashSet = false;
         ArrayList<CardForParsing> straightFlashCardSet = new ArrayList<>();
@@ -114,11 +114,14 @@ public class StraightAndSuitedRangCalculationService {
         ArrayList<CardForParsing> straightCardSet = new ArrayList<>(playableCards);
         int straightCounter = 0;
         int oneRangCounter = 0;
-        ////
-        if(playableCards.get(0).getRank() == 14 && playableCards.get (playableCards.size()-1).getRank() == 2){
-            straightCardSet.add(playableCards.get(0));
+        //перекидка тузов для обратных стритов
+        for (int i = 0; i < 5; i++) {
+            if ((straightCardSet.get(i).getRank() == 14 && straightCardSet.get(straightCardSet.size() - 1 - i).getRank() == 2)) {
+                straightCardSet.add(straightCardSet.get(i));
+            } else {
+                i = 5;
+            }
         }
-        ///
         for (int i = 0; i < straightCardSet.size() - 1; ) {
             CardForParsing cardOne = straightCardSet.get(i);
             CardForParsing cardTwo = straightCardSet.get(i + 1 >= straightCardSet.size() ? i : i + 1);
@@ -153,11 +156,20 @@ public class StraightAndSuitedRangCalculationService {
     private ArrayList<CardForParsing> straightFlashSearch(ArrayList<CardForParsing> oneSuitCardSet, ArrayList<CardForParsing> straightCardSet) {
         ArrayList<CardForParsing> straightFlashSet = new ArrayList<>();
         String suit = oneSuitCardSet.get(0).getSuit();
-        for (CardForParsing suitCard : oneSuitCardSet) {
-            for (CardForParsing straightCard : straightCardSet) {
+        for (CardForParsing straightCard : straightCardSet) {
+            for (CardForParsing suitCard : oneSuitCardSet) {
                 if (straightCard.getSuit().equals(suit) && suitCard.equals(straightCard)) {
                     straightFlashSet.add(straightCard);
+                    break;
                 }
+            }
+        }
+        for (int i = 0; i < straightFlashSet.size() - 1; i++) {
+            CardForParsing cardOne = straightFlashSet.get(i);
+            CardForParsing cardTwo = straightFlashSet.get(i + 1 >= straightFlashSet.size() ? i : i + 1);
+            if (((cardOne.getRank() - 1 != cardTwo.getRank()) && cardOne != cardTwo) && !(cardOne.getRank() == 2 && cardTwo.getRank() == 14)) {
+                straightFlashSet.remove(cardOne);
+                i--;
             }
         }
         return straightFlashSet;
@@ -165,7 +177,7 @@ public class StraightAndSuitedRangCalculationService {
 
     private void makeFiveCardSet(ArrayList<CardForParsing> cardSet) {
         while (cardSet.size() > 5) {
-            cardSet.remove(cardSet.size()-1);
+            cardSet.remove(cardSet.size() - 1);
         }
     }
 
@@ -173,7 +185,7 @@ public class StraightAndSuitedRangCalculationService {
         for (int i = 0; i < cardSet.size() - 1; i++) {
             CardForParsing cardOne = cardSet.get(i);
             CardForParsing cardTwo = cardSet.get(i + 1 >= cardSet.size() ? i : i + 1);
-            if ((cardSet.get(i).getRank() == cardSet.get(i + 1 >= cardSet.size() ? i : i + 1).getRank()) && cardOne != cardTwo) {
+            if ((cardOne.getRank() == cardTwo.getRank()) && cardOne != cardTwo) {
                 cardSet.remove(cardOne);
                 i--;
             }

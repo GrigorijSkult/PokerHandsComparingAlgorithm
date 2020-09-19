@@ -21,7 +21,7 @@ public class DataOutputSortingService {
             CalculationResultDto resultTwo = handsCalculationResults.get(i + 1 >= handsCalculationResults.size() ? i : i + 1);
             if (resultOne.getHandStrengths().equals(resultTwo.getHandStrengths()) && resultOne != resultTwo) {
                 for (CalculationResultDto dto : handsCalculationResults) {
-                    if (dto.getHandStrengths().equals(resultOne.getHandStrengths())) {
+                    if (dto.getHandStrengths().equals(resultOne.getHandStrengths()) && !dto.isBoardCombination()) {
                         cardCollector.add(dto);
                         i++;
                     }
@@ -31,7 +31,6 @@ public class DataOutputSortingService {
                 i++;
             }
         }
-
         if (!oneStrengthHandsMap.isEmpty()) {
             for (Map.Entry<Double, ArrayList<CalculationResultDto>> oneStrengthHand : oneStrengthHandsMap.entrySet()) {
                 oneStrengthHand.getValue().sort(FlashArrayComparator);
@@ -41,7 +40,7 @@ public class DataOutputSortingService {
                     CalculationResultDto resultOne = oneStrengthHand.getValue().get(i);
                     CalculationResultDto resultTwo = oneStrengthHand.getValue().get(i + 1 >= oneStrengthHand.getValue().size() ? i : i + 1);
                     if (!resultOne.equals(resultTwo)) {
-                        switch (choseHighCombinationByKicker(resultOne.getCombinationCards(), resultTwo.getCombinationCards(), oneStrengthHand.getKey())) {
+                        switch (choseHighCombinationByKicker(resultOne.getCombinationCards(), resultTwo.getCombinationCards())) {
                             case 1:
                                 resultOne.setHandStrengths(handStrengths + oneStrengthHandNumber);
                                 oneStrengthHandNumber -= 0.001;
@@ -63,14 +62,14 @@ public class DataOutputSortingService {
         return handsCalculationResults;
     }
 
-    private int choseHighCombinationByKicker(ArrayList<CardForParsing> combinationCardsOne, ArrayList<CardForParsing> combinationCardsTwo, double key) {
-            for (int i = 0; i < combinationCardsOne.size(); i++) {
-                if (combinationCardsOne.get(i).getRank() > combinationCardsTwo.get(i).getRank()) {
-                    return 1;
-                } else if (combinationCardsOne.get(i).getRank() < combinationCardsTwo.get(i).getRank()) {
-                    return 2;
-                }
+    private int choseHighCombinationByKicker(ArrayList<CardForParsing> combinationCardsOne, ArrayList<CardForParsing> combinationCardsTwo) {
+        for (int i = 0; i < combinationCardsOne.size(); i++) {
+            if (combinationCardsOne.get(i).getRank() > combinationCardsTwo.get(i).getRank()) {
+                return 1;
+            } else if (combinationCardsOne.get(i).getRank() < combinationCardsTwo.get(i).getRank()) {
+                return 2;
             }
+        }
         return 0;
     }
 }

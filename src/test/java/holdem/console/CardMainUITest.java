@@ -56,13 +56,22 @@ public class CardMainUITest {
 
     @Test
     public void runMainUI0006() {
+        assertEquals("7s4h 6cTh 8c3d JsQd 2hJd",
+                victim.mainSorting("7d8d9dQhTd 7s4h 2hJd JsQd 6cTh 8c3d"));
+    }
+
+    //-200
+    @Test
+    public void runMainUI0007() {
         assertEquals("3sKc KhTd Kd7c=7sTs Ac8s AdQc 4d3c",
                 victim.mainSorting("5d5h6d7dAh 3sKc KhTd Kd7c Ac8s 4d3c AdQc 7sTs"));
     }
 
+    //-53
     @Test
-    public void runMainUI0007() {
-        assertEquals("Ts8h Js2d Jh8d TdQs 2h5d",
-                victim.mainSorting("3s4c7c7dAs TdQs Ts8h Jh8d Js2d 2h5d"));
+    public void runMainUI0008() {
+        //assertEquals("5c9c=6d8d=8h7c=9hKd=AdQh=Qc9d=QdKh=Qs4d=TsTh",//from EG tests
+        assertEquals("QdKh=8h7c=Qs4d=Qc9d=6d8d=9hKd=5c9c=AdQh=TsTh",
+                victim.mainSorting("2h3h4h5hAh QdKh 8h7c Qs4d Qc9d 6d8d 9hKd 5c9c AdQh TsTh"));
     }
 }

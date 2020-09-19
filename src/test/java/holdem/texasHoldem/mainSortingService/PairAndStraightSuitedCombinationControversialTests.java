@@ -85,4 +85,10 @@ public class PairAndStraightSuitedCombinationControversialTests {
         assertEquals("TcKh 2d7s 3h3s", result);
     }
 
+    @Test
+    public void straightAcePrecedeTwo() {
+        assertEquals("Ts8h Js2d Jh8d TdQs 2h5d",
+                victim.mainSorting("3s4c7c7dAs TdQs Ts8h Jh8d Js2d 2h5d"));
+    }
+
 }

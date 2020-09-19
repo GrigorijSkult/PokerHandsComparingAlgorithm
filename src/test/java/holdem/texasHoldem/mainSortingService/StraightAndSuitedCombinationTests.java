@@ -69,4 +69,10 @@ public class StraightAndSuitedCombinationTests {
 
         assertEquals("7h7c Qh3s KdQc", result);
     }
+
+    @Test
+    public void twoFlashAndStraight() {
+        assertEquals("4h5h Ts5c As4d",
+                victim.mainSorting("4s6s7d8s9s As4d Ts5c 4h5h"));
+    }
 }
