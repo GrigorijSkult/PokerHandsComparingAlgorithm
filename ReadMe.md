@@ -3,7 +3,7 @@ This repository contains working code sample for comparing the strength of Texas
 The algorithm counts the best possible combination out of 5 board cards and 2 hand cards and perform the 
 standard output of hand list sorted by strength. 
 
-Project status: comparing the strength of Texas Hold'em hands - _finished, tested_;
+Project status: _finished, tested_;
 
 
 ## Code Examples
@@ -55,7 +55,7 @@ You can run the project using the command line or its analogue
 5. Perform data input described in "General information on the use" and press Enter;
 6. Next output line is hand list sorted by strength. 
 
-Now you can repeat step №4 to calculate a new data.
+Now you can repeat step №5 to calculate a new data.
 In the case of the multiple lines input, one line of input corresponds to exactly one line of sequential output.
 
 
@@ -71,7 +71,7 @@ https://github.com/GrigorijSkult/PokerHandsComparingAlgorithm.git
 5. Perform data input described in "General information on the use" and press Enter;
 6. Next output is hand list sorted by strength.
 
-Now you can repeat step №4 to calculate a new data.
+Now you can repeat step №5 to calculate a new data.
 In the case of the multiple lines input, one line of input corresponds to exactly one line of sequential output.
  
 
